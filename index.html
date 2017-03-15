@@ -2,11 +2,31 @@
 <head>
     <title> Scicence and Engineering Day </title>
     <script src="blockly_compressed.js"></script>
+    <script src="javascript_compressed.js"></script>
+    <script src="python_compressed.js"></script>
     <script src="blocks_compressed.js"></script>
-    <script src="blocks/robots.js"></script>
+    <script src="./blocks/robots.js"></script>
+    <script src="./generators/python/robots.js"></script>
     <script src="msg/js/en.js"></script>
+
+<script>
+
+var workspace;
+
+function clickMe(){
+    var code = Blockly.Python.workspaceToCode(workspace);
+    alert(code);
+}
+
+function loadMe(){
+    alert("I am a script!");
+  workspace = Blockly.inject('blocklyDiv',
+    {toolbox: document.getElementById('toolbox')});   
+}
+</script>
+
 </head>
-<body>
+<body onload="loadMe()">
     <h1>
         Science and Engineering day code editor
     </h1>
@@ -16,8 +36,11 @@
         button.
     </p>
     <p>
-        If in doubt ask a volunteer for help :) 
+        If in doubt ask a volunteer for help :)
     </p>
+
+<button name = "Click me!" title="Click me!" onclick="clickMe()"> Click Me! </button>
+
 <div id="blocklyDiv" style="height: 480px; width: 600px;">
 </div>
 </body>
@@ -27,8 +50,4 @@
   <block type="go_forward"></block>
   <block type="go_backward"></block>
 </xml>
-<script>
-  var workspace = Blockly.inject('blocklyDiv',
-      {toolbox: document.getElementById('toolbox')});
-</script>
 </html>

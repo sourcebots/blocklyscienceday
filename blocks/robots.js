@@ -1,4 +1,4 @@
-Blockly.Blocks['turn_left'] = {
+Blockly.Blocks["turn_left"] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Turn Left");
