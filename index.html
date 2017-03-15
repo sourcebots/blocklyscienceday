@@ -1,5 +1,34 @@
 <html>
-
-
-
+<head>
+    <title> Scicence and Engineering Day </title>
+    <script src="blockly_compressed.js"></script>
+    <script src="blocks_compressed.js"></script>
+    <script src="blocks/robots.js"></script>
+    <script src="msg/js/en.js"></script>
+</head>
+<body>
+    <h1>
+        Science and Engineering day code editor
+    </h1>
+    <p>
+        Welcome to the code editor, this is really easy to use, just drag and drop
+        the blocks to make a program that the robot will run! Then click the "Export"
+        button.
+    </p>
+    <p>
+        If in doubt ask a volunteer for help :) 
+    </p>
+<div id="blocklyDiv" style="height: 480px; width: 600px;">
+</div>
+</body>
+<xml id="toolbox" style="display: none">
+  <block type="turn_left"></block>
+  <block type="turn_right"></block>
+  <block type="go_forward"></block>
+  <block type="go_backward"></block>
+</xml>
+<script>
+  var workspace = Blockly.inject('blocklyDiv',
+      {toolbox: document.getElementById('toolbox')});
+</script>
 </html>
