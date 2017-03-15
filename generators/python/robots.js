@@ -1,6 +1,8 @@
+var move_forward_power = 120;
+
 Blockly.Python['turn_left'] = function(block) {
   // TODO: Assemble Python into code variable.
-  var code = 'setMotorPower(value)'.replace("value", 200);
+  var code = 'setMotorPower(value)'.replace("value", move_forward_power);
   alert(code);
   return code;
 };
