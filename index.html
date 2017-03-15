@@ -11,19 +11,21 @@
     <script src="saver.js"></script>
 
 <script>
-
 var workspace;
 var move_forward_power = 120;
 
 function clickMe(){
+    var header_start = "import time\n";
     var code = Blockly.Python.workspaceToCode(workspace);
 
-    var blob = new Blob([code], {type: "text/plain;charset=utf-8"});
+    var new_code = code.concat(header_start);
+
+    var blob = new Blob([new_code], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "hello world.py");
 }
 
 function loadMe(){
-    alert("I am a script!");
+    alert("Welcome to the Science and Engineering day !!!");
   workspace = Blockly.inject('blocklyDiv',
     {toolbox: document.getElementById('toolbox')});   
 }
@@ -43,7 +45,7 @@ function loadMe(){
         If in doubt ask a volunteer for help :)
     </p>
 
-<button name = "Click me!" title="Click me!" onclick="clickMe()"> Click Me! </button>
+<button name = "Export !!!" title="Click me!" onclick="clickMe()"> Export!!! </button>
 
 <div id="blocklyDiv" style="height: 480px; width: 600px;">
 </div>
