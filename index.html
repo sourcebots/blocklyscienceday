@@ -9,6 +9,7 @@
     <script src="./generators/python/robots.js"></script>
     <script src="msg/js/en.js"></script>
     <script src="saver.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
 
 <script>
 var workspace;
@@ -33,21 +34,26 @@ function loadMe(){
 
 </head>
 <body onload="loadMe()">
-    <h1>
-        Science and Engineering day code editor
-    </h1>
-    <p>
-        Welcome to the code editor, this is really easy to use, just drag and drop
-        the blocks to make a program that the robot will run! Then click the "Export"
-        button.
-    </p>
-    <p>
-        If in doubt ask a volunteer for help :)
-    </p>
+    <div id="welcome" align="center">
 
-<button name = "Export !!!" title="Click me!" onclick="clickMe()"> Export!!! </button>
+        <h1>
+            Science and Engineering day code editor
+        </h1>
+        <p>
+            Welcome to the code editor, this is really easy to use, just drag and drop
+            the blocks to make a program that the robot will run! Then click the "Export"
+            button.
+        </p>
+        <p>
+            If in doubt ask a volunteer for help :)
+        </p>
+        <button name = "Export !!!" title="Click me!" onclick="clickMe()"> Export!!! </button>
+        <p></p>
 
-<div id="blocklyDiv" style="height: 480px; width: 600px;">
+        <div id="blocklyDiv" style="height: 480px; width: screen.width">
+
+    </div>
+
 </div>
 </body>
 <xml id="toolbox" style="display: none">
