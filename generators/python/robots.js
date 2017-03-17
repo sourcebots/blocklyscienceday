@@ -33,9 +33,9 @@ Blockly.Python['go_backward'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['marker'] = function(block) {
+Blockly.Python['marker'] = function(block) {
     var number_marker_num = block.getFieldValue('marker_num');
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
+    // TODO: Assemble Python into code variable.
+    var code = '...\n';
     return code;
 };
