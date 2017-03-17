@@ -55,6 +55,8 @@ Blockly.Blocks['marker'] = {
         this.appendDummyInput()
             .appendField("Go to marker")
             .appendField(new Blockly.FieldNumber(0, 1, 10, 1), "marker_num");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
         this.setColour(230);
         this.setTooltip('Tell the robot to go to the specified marker (1-10)');
         this.setHelpUrl('');
