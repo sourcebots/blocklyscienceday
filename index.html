@@ -1,3 +1,7 @@
+<!--Home page for the science and engineering day
+This uses the Blockly Code Editor from Google - developers.google.com/blockly
+-->
+
 <html>
 <head>
     <title> Scicence and Engineering Day </title>
@@ -16,16 +20,21 @@
 
 <script>
 var workspace;
-var move_forward_power = 120;
 
 function clickMe(){
-    var header_start = "import time\n";
+    //Top of the file import statements
+    var header_start = "from time import sleep\nfrom sb import *\n";
+    //Call the generators of the respective blocks to create the code.
     var code = Blockly.Python.workspaceToCode(workspace);
-
+    //Add the header to the end of the code
     var new_code = header_start.concat(code);
 
+    alert(new_code);
+
+    //Create file for code
     var blob = new Blob([new_code], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "hello world.py");
+    //Prompt user for file location
+    saveAs(blob, "robot.py");
 }
 
 function loadMe(){
@@ -72,12 +81,13 @@ function loadMe(){
             </div>
         </div>
 
-        <footer>
-            Uses Google's Blockly - developers.google.com/blockly
-            <p></p>
-            Source Bots Github - github.com/sourcebots
-        </footer>
-</div>
+        <div id="footer">
+            <footer>
+                Uses Google's Blockly - developers.google.com/blockly
+                <p></p>
+                Source Bots Github - github.com/sourcebots
+            </footer>
+        </div>
 
 </body>
 <xml id="toolbox" style="display: none">
