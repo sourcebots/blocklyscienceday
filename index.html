@@ -31,7 +31,7 @@
 
       function loadMe() {
         var workspace = Blockly.inject(
-          'blocklyDiv', { toolbox: document.getElementById('toolbox') }
+          'workspace', { toolbox: document.getElementById('toolbox') }
         );
       }
     </script>
@@ -46,20 +46,25 @@
       <block type="marker"></block>
     </xml>
 
-    <div id="welcome" align="center">
-      <h1>Science and Engineering day code editor</h1>
-      <h3>Source Bots - Electronics and Computer Science - University of Southampton</h3>
-      <p>Welcome to the code editor, this is really easy to use, just drag and drop the blocks to make a program that the robot will run! Then click the "Export" button.</p>
+    <header class="header container">
+      <div class="row">
+        <div class="col-sm-11">
+          <h1>Science and Engineering Day</h1>
+          <p>
+            Simply drag and drop the blocks from the left to make a program that the robot will run!<br />
+            Once you are ready, click the "Export" button and save the file onto your USB stick.
+          </p>
+        </div>
 
-      <p>When you click the export button a dialog box will appear!<br /> <br />Navigate to the USB and click Save! <br />If it asks you to overwrite, answer YES!</p>
+        <div class="col-sm-1">
+          <br /><br /><!-- lol -->
+          <button id="go" class="btn btn-primary" onclick="clickMe()">Export</button>
+        </div>
+      </div>
+    </header>
 
-      <p>If in doubt ask a volunteer for help :)</p>
-
-      <button name = "Export !!!" title="Click me!" onclick="clickMe()"> Export!!! </button>
-
-      <img id="ecs" src="ecs.gif" alt="Smiley face" height="200" width="550">
-
-      <div id="blocklyDiv" style="height: 480px; width: screen.width"></div>
-    </div>
+    <main class="workspace" id="workspace">
+      <!-- Blocky Workspace is injected here. -->
+    </main>
   </body>
 </html>
