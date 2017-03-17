@@ -35,10 +35,17 @@
         );
       }
     </script>
-
   </head>
 
   <body onload="loadMe()">
+    <xml id="toolbox" style="display: none">
+      <block type="turn_left"></block>
+      <block type="turn_right"></block>
+      <block type="go_forward"></block>
+      <block type="go_backward"></block>
+      <block type="marker"></block>
+    </xml>
+
     <div id="welcome" align="center">
       <h1>Science and Engineering day code editor</h1>
       <h3>Source Bots - Electronics and Computer Science - University of Southampton</h3>
@@ -50,30 +57,9 @@
 
       <button name = "Export !!!" title="Click me!" onclick="clickMe()"> Export!!! </button>
 
+      <img id="ecs" src="ecs.gif" alt="Smiley face" height="200" width="550">
+
       <div id="blocklyDiv" style="height: 480px; width: screen.width"></div>
     </div>
-
-    <div class="panel panel">
-      <div class="panel-body">
-        <img id="google" src="google.png" alt="Smiley face" height="250" width="600">
-        <br />
-        <img id="ecs" src="ecs.gif" alt="Smiley face" height="200" width="550">
-      </div>
-    </div>
-
-    <footer>
-      Uses Google's Blockly - developers.google.com/blockly
-      <br />
-      Source Bots Github - github.com/sourcebots
-    </footer>
   </body>
-
-  <xml id="toolbox" style="display: none">
-    <block type="turn_left"></block>
-    <block type="turn_right"></block>
-    <block type="go_forward"></block>
-    <block type="go_backward"></block>
-    <block type="marker"></block>
-  </xml>
-
 </html>

@@ -1,27 +1,9 @@
-ol{
+ol {
     align-content: center;
 }
 
-button{
+button {
 
-}
-
-footer{
-    /*padding-left: 10px;*/
-    padding-bottom: 10px;
-    font-family: Verdana;
-    font-size: x-large;
-    text-align: center;
-    -webkit-columns: 200px 2; /* Chrome, Safari, Opera */
-    -moz-columns: 200px 2; /* Firefox */
-    columns: 200px 2;
-}
-
-.panel-body{
-    -webkit-columns: 200px 2; /* Chrome, Safari, Opera */
-    -moz-columns: 200px 2; /* Firefox */
-    columns: 200px 2;
-    background-color: black;
 }
 
 img {
