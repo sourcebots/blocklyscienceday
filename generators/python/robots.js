@@ -3,7 +3,7 @@ var sleep_time = 1;
 
 Blockly.Python['turn_left'] = function(block) {
   // TODO: Assemble Python into code variable.
-  var code = 'setMotorPower(m[0] ,value)\nsleep(sleep_time)'.replace("value", move_forward_power).
+  var code = '\nsetMotorPower(m[0] ,value)\nsleep(sleep_time)'.replace("value", move_forward_power).
                 replace("sleep_time", sleep_time);
   alert(code);
   return code;
@@ -11,7 +11,7 @@ Blockly.Python['turn_left'] = function(block) {
 
 Blockly.Python['turn_right'] = function(block) {
   // TODO: Assemble Python into code variable.
-  var code = 'setMotorPower(m[1] ,value)\nsleep(sleep_time)'.replace("value", move_forward_power).
+  var code = '\nsetMotorPower(m[1] ,value)\nsleep(sleep_time)'.replace("value", move_forward_power).
                 replace("sleep_time", sleep_time);
   return code;
 };
@@ -31,4 +31,11 @@ Blockly.Python['go_backward'] = function(block) {
  var code = 'setMotorPower(value)\nsleep(sleep_time)'.replace("value", move_forward_power).
                 replace("sleep_time", sleep_time);
   return code;
+};
+
+Blockly.JavaScript['marker'] = function(block) {
+    var number_marker_num = block.getFieldValue('marker_num');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
 };
