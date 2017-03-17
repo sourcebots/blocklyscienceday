@@ -27,7 +27,7 @@ Blockly.Blocks['go_forward'] = {
     this.appendValueInput("forward_seconds")
         .setCheck("Number")
         .appendField(new Blockly.FieldNumber(0, 0), "")
-        .appendField("Go forward");
+        .appendField("Go forwards");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -41,7 +41,7 @@ Blockly.Blocks['go_backward'] = {
     this.appendValueInput("backward_seconds")
         .setCheck("Number")
         .appendField(new Blockly.FieldNumber(0, 0), "Go Backward")
-        .appendField("Go backward");
+        .appendField("Go backwards");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
