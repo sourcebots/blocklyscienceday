@@ -10,6 +10,9 @@
     <script src="msg/js/en.js"></script>
     <script src="saver.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><
 
 <script>
 var workspace;
@@ -19,14 +22,13 @@ function clickMe(){
     var header_start = "import time\n";
     var code = Blockly.Python.workspaceToCode(workspace);
 
-    var new_code = code.concat(header_start);
+    var new_code = header_start.concat(code);
 
     var blob = new Blob([new_code], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "hello world.py");
 }
 
 function loadMe(){
-    alert("Welcome to the Science and Engineering day !!!");
   workspace = Blockly.inject('blocklyDiv',
     {toolbox: document.getElementById('toolbox')});   
 }
@@ -34,32 +36,55 @@ function loadMe(){
 
 </head>
 <body onload="loadMe()">
-    <div id="welcome" align="center">
 
-        <h1>
-            Science and Engineering day code editor
-        </h1>
-        <p>
-            Welcome to the code editor, this is really easy to use, just drag and drop
-            the blocks to make a program that the robot will run! Then click the "Export"
-            button.
-        </p>
-        <p>
-            If in doubt ask a volunteer for help :)
-        </p>
-        <button name = "Export !!!" title="Click me!" onclick="clickMe()"> Export!!! </button>
-        <p></p>
+        <div id="welcome" align="center">
 
-        <div id="blocklyDiv" style="height: 480px; width: screen.width">
+            <h1>
+                Science and Engineering day code editor
+            </h1>
+            <h3>
+                Source Bots - Electronics and Computer Science - University of Southampton
+            </h3>
+            <p>
+                Welcome to the code editor, this is really easy to use, just drag and drop
+                the blocks to make a program that the robot will run! Then click the "Export"
+                button.
+            </p>
 
-    </div>
+            <p>
+                When you click the export button a dialog box will appear!<br /> <br />
+                Navigate to the USB and click Save! <br />
+                If it asks you to overwrite, answer YES!
+            </p>
 
+            <p>
+                If in doubt ask a volunteer for help :)
+            </p>
+            <button name = "Export !!!" title="Click me!" onclick="clickMe()"> Export!!! </button>
+            <p></p>
+            <div id="blocklyDiv" style="height: 480px; width: screen.width"></div>
+        </div>
+        <div class="panel panel">
+            <div class="panel-body">
+                <img id="google" src="google.png" alt="Smiley face" height="250" width="600">
+                <p></p>
+                <img id="ecs" src="ecs.gif" alt="Smiley face" height="200" width="550">
+            </div>
+        </div>
+
+        <footer>
+            Uses Google's Blockly - developers.google.com/blockly
+            <p></p>
+            Source Bots Github - github.com/sourcebots
+        </footer>
 </div>
+
 </body>
 <xml id="toolbox" style="display: none">
-  <block type="turn_left"></block>
-  <block type="turn_right"></block>
-  <block type="go_forward"></block>
-  <block type="go_backward"></block>
+    <block type="turn_left"></block>
+    <block type="turn_right"></block>
+    <block type="go_forward"></block>
+    <block type="go_backward"></block>
+    <block type="marker"></block>
 </xml>
 </html>
