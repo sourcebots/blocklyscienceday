@@ -26,7 +26,7 @@
         var new_code = header_start.concat(code);
 
         var blob = new Blob([new_code], {type: "text/plain;charset=utf-8"});
-        saveAs(blob, "hello world.py");
+        saveAs(blob, "robot.py");
       }
 
       function loadMe() {
@@ -62,7 +62,6 @@
         </div>
       </div>
     </header>
-
     <main class="workspace" id="workspace">
       <!-- Blocky Workspace is injected here. -->
     </main>
