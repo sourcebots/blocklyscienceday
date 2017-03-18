@@ -24,8 +24,7 @@
         var code = Blockly.Python.workspaceToCode(workspace);
         data = data.concat("\n");
         data = data.concat(code);
-        alert(data);
-        var blob = new Blob([code], {type: "text/plain;charset=utf-8"});
+        var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
         saveAs(blob, "robot.py");
         data = "";
       }
