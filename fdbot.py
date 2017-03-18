@@ -18,7 +18,7 @@ class FamilyDayBot:
 
     def _move(self, left, right, amount):
         self.motor_socket.send(json.dumps({"left":left, "right":right}).encode("utf-8"))
-        sleep(amount/ self.max_speed)
+        time.sleep(amount/ self.max_speed)
         self.motor_socket.send(json.dumps({"left":0, "right":0}).encode("utf-8"))
 
 
