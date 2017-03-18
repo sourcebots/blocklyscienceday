@@ -17,22 +17,32 @@
 
     <script>
       var workspace;
-      var move_forward_power = 120;
+      var data;
 
       function clickMe(){
-        var header_start = "import time\n";
+          getTheShit();
         var code = Blockly.Python.workspaceToCode(workspace);
-
-        var new_code = header_start.concat(code);
-
-        var blob = new Blob([new_code], {type: "text/plain;charset=utf-8"});
+        data = data.concat("\n");
+        data = data.concat(code);
+        var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
         saveAs(blob, "robot.py");
+        data = "";
       }
 
       function loadMe() {
+          getTheShit();
         var workspace = Blockly.inject(
           'workspace', { toolbox: document.getElementById('toolbox') }
         );
+      }
+
+      function getTheShit(){
+          var client = new XMLHttpRequest();
+          client.open('GET', '/fdbot.py');
+          client.onreadystatechange = function () {
+              data = client.responseText;
+          }
+          client.send();
       }
     </script>
   </head>

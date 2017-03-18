@@ -27,7 +27,7 @@ Blockly.Blocks['go_forward'] = {
     this.appendValueInput("forward_seconds")
         .setCheck("Number")
         .appendField("Go forward")
-        .appendField(new Blockly.FieldNumber(0, 0), "")
+        .appendField(new Blockly.FieldNumber(0, 0), "Go Forward")
         .appendField("spaces");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
