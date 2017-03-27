@@ -3,8 +3,8 @@ This uses the Blockly Code Editor from Google - developers.google.com/blockly
 -->
 
 <html>
-<head>
-    <title> Scicence and Engineering Day </title>
+  <head>
+    <title> Science and Engineering Day </title>
     <script src="blockly_compressed.js"></script>
     <script src="javascript_compressed.js"></script>
     <script src="python_compressed.js"></script>
@@ -13,88 +13,70 @@ This uses the Blockly Code Editor from Google - developers.google.com/blockly
     <script src="./generators/python/robots.js"></script>
     <script src="msg/js/en.js"></script>
     <script src="saver.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script>
-var workspace;
+    <link rel="stylesheet" type="text/css" href="index.css" />
 
-function clickMe(){
-    //Top of the file import statements
-    var header_start = "from time import sleep\nfrom sb import *\n";
-    //Call the generators of the respective blocks to create the code.
-    var code = Blockly.Python.workspaceToCode(workspace);
-    //Add the header to the end of the code
-    var new_code = header_start.concat(code);
+    <script>
+      var workspace;
+      var data;
 
-    alert(new_code);
+      function clickMe(){
+          getTheShit();
+        var code = Blockly.Python.workspaceToCode(workspace);
+        data = data.concat("\n");
+        data = data.concat(code);
+        var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "robot.py");
+        data = "";
+      }
 
-    //Create file for code
-    var blob = new Blob([new_code], {type: "text/plain;charset=utf-8"});
-    //Prompt user for file location
-    saveAs(blob, "robot.py");
-}
+      function loadMe() {
+          getTheShit();
+        var workspace = Blockly.inject(
+          'workspace', { toolbox: document.getElementById('toolbox') }
+        );
+      }
 
-function loadMe(){
-  workspace = Blockly.inject('blocklyDiv',
-    {toolbox: document.getElementById('toolbox')});   
-}
-</script>
+      function getTheShit(){
+          var client = new XMLHttpRequest();
+          client.open('GET', '/fdbot.py');
+          client.onreadystatechange = function () {
+              data = client.responseText;
+          }
+          client.send();
+      }
+    </script>
+  </head>
 
-</head>
-<body onload="loadMe()">
+  <body onload="loadMe()">
+    <xml id="toolbox" style="display: none">
+      <block type="turn_left"></block>
+      <block type="turn_right"></block>
+      <block type="go_forward"></block>
+      <block type="go_backward"></block>
+      <!-- <block type="marker"></block>-->
+    </xml>
 
-        <div id="welcome" align="center">
-
-            <h1>
-                Science and Engineering day code editor
-            </h1>
-            <h3>
-                Source Bots - Electronics and Computer Science - University of Southampton
-            </h3>
-            <p>
-                Welcome to the code editor, this is really easy to use, just drag and drop
-                the blocks to make a program that the robot will run! Then click the "Export"
-                button.
-            </p>
-
-            <p>
-                When you click the export button a dialog box will appear!<br /> <br />
-                Navigate to the USB and click Save! <br />
-                If it asks you to overwrite, answer YES!
-            </p>
-
-            <p>
-                If in doubt ask a volunteer for help :)
-            </p>
-            <button name = "Export !!!" title="Click me!" onclick="clickMe()"> Export!!! </button>
-            <p></p>
-            <div id="blocklyDiv" style="height: 480px; width: screen.width"></div>
+    <header class="header container">
+      <div class="row">
+        <div class="col-sm-11">
+          <h1>Science and Engineering Day</h1>
+          <p>
+            Simply drag and drop the blocks from the left to make a program that the robot will run!<br />
+            Once you are ready, click the "Save" button and save the file onto your USB stick.
+          </p>
         </div>
-        <div class="panel panel">
-            <div class="panel-body">
-                <img id="google" src="google.png" alt="Smiley face" height="250" width="600">
-                <p></p>
-                <img id="ecs" src="ecs.gif" alt="Smiley face" height="200" width="550">
-            </div>
+        <div class="col-sm-1">
+          <br /><br /><!-- lol -->
+          <button id="go" class="btn btn-primary" onclick="clickMe()">Save (ASK A MENTOR FIRST)</button>
         </div>
-
-        <div id="footer">
-            <footer>
-                Uses Google's Blockly - developers.google.com/blockly
-                <p></p>
-                Source Bots Github - github.com/sourcebots
-            </footer>
-        </div>
-
-</body>
-<xml id="toolbox" style="display: none">
-    <block type="turn_left"></block>
-    <block type="turn_right"></block>
-    <block type="go_forward"></block>
-    <block type="go_backward"></block>
-    <block type="marker"></block>
-</xml>
+      </div>
+    </header>
+    <main class="workspace" id="workspace">
+      <!-- Blocky Workspace is injected here. -->
+    </main>
+  </body>
 </html>

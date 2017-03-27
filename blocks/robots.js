@@ -24,10 +24,10 @@ Blockly.Blocks['turn_right'] = {
 
 Blockly.Blocks['go_forward'] = {
   init: function() {
-    this.appendValueInput("forward_seconds")
-        .setCheck("Number")
-        .appendField(new Blockly.FieldNumber(0, 0), "")
-        .appendField("Go forwards");
+    this.appendDummyInput()
+        .appendField("Go forward")
+        .appendField(new Blockly.FieldNumber(0, 0, 6), "Go Forward")
+        .appendField("spaces");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -38,10 +38,10 @@ Blockly.Blocks['go_forward'] = {
 
 Blockly.Blocks['go_backward'] = {
   init: function() {
-    this.appendValueInput("backward_seconds")
-        .setCheck("Number")
-        .appendField(new Blockly.FieldNumber(0, 0), "Go Backward")
-        .appendField("Go backwards");
+    this.appendDummyInput()
+        .appendField("Go backward")
+        .appendField(new Blockly.FieldNumber(0, 0, 6), "Go Backward")
+        .appendField("spaces");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -54,7 +54,7 @@ Blockly.Blocks['marker'] = {
     init: function() {
         this.appendDummyInput()
             .appendField("Go to marker")
-            .appendField(new Blockly.FieldNumber(0, 1, 10, 1), "marker_num");
+            .appendField(new Blockly.FieldNumber(0, 0, 10, 1), "marker_num");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(230);
