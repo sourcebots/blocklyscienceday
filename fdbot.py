@@ -1,14 +1,17 @@
 import socket
 import json
 import time
-
+import math
 
 class FamilyDayBot:
     def __init__(self):
-        self.turn_time = 3
+        self.turn_left_time = 1.45
+        self.turn_right_time = 1.45
+        self.correct_threshold = 100
+        self.min_correct_amount = 0.15
         self.max_speed = 2
-        self.power_serial = "SR0GV2Y"
-        self.motor_serial = "SR0GK1A"
+        self.power_serial = "sr0GV2Y"
+        self.motor_serial = "0GK1A"
         self.motor_socket = socket.socket(socket.AF_UNIX, socket.SOCK_SEQPACKET)
         self.power_socket = socket.socket(socket.AF_UNIX, socket.SOCK_SEQPACKET)
         self.vision_socket = socket.socket(socket.AF_UNIX, socket.SOCK_SEQPACKET)
@@ -23,34 +26,65 @@ class FamilyDayBot:
         self.motor_socket.send(json.dumps({"left": 0, "right": 0}).encode("utf-8"))
 
     def turn_left(self):
-        self._move(0.3, 0.3, self.turn_time)
+        self._move(-0.3, -0.3, self.turn_left_time)
 
     def turn_right(self):
-        self._move(-0.3, -0.3, self.turn_time)
+        self._move(0.3, 0.3, self.turn_right_time)
 
-    def go_backwards(self, count):
-        self._move(0.3, -0.3, count)
+    def go_backward(self, count):
+            self._move(-0.3, 0.3, count*2.8)
 
-    def go_fowards(self, count):
-        self._move(-0.3, 0.3, count)
+    def go_forward(self, count):
+            self._move(0.3, -0.3, count*2.8)
 
     def go_to_marker(self, marker_no):
-        vision_data = json.load(self.vision_socket.recv(2048).decode("utf-8"))
-        token = dict()
-        for marker in vision_data:
-            if marker["id"] == marker_no and token == {}:
-                token = marker
-        if token != {}:
-            # TODO: Adjustment code
-            self.go_fowards(int(token["distance"]))
-        else:
-            self.motor_socket.send(json.dumps({"beep": True}).encode("utf-8"))
+        done = False
+        failcount = 0
+        while not done:
+            self.vision_socket.send(b'{}')
+            self.vision_socket.setblocking(False)
+            vision_data = None
+            try:
+                while True:
+                    vision_data = json.loads(self.vision_socket.recv(2048).decode("utf-8"))
+            except:
+                pass
+            if vision_data:
+                vision_data = json.loads(vision_data)
+            else:
+                vision_data = []
+            token = None
+            for marker in vision_data:
+                if marker["id"] == marker_no:
+                    token = marker
+            if token:
+                failcount = 0
+                offset = token['pixel_centre'][0] - (1280 / 2)
+                if abs(offset) > self.correct_threshold:
+                    if offset < 0:
+                        bot._move(-0.2, -0.2, (self.turn_left_time / 3) * (-offset / (1280 / 2)) + self.min_correct_amount)
+                    if offset > 0:
+                        bot._move(0.2, 0.2, (self.turn_right_time / 3) * (offset / (1280 / 2)) + self.min_correct_amount)
+                else:
+                    # Correct angle, move distance
+                    if token["distance"] > 1:
+                        self.go_fowards(1)
+                    elif token["distance"] > 0.5:
+                        self.go_fowards(0.5)
+                    else:
+                        done = True
+                        print("done!")
+                        return
+                time.sleep(2)
+            else:
+                if failcount > 3:
+                    print("Losing...",failcount)
+                    return
+                else:
+                    failcount += 1
+                    time.sleep(2)
 
-    def __del__(self):
-        self.power_socket.send(json.dumps({"power": False}).encode("utf-8"))
-        self.power_socket.close()
-        self.motor_socket.close()
-        self.vision_socket.close()
 
 
 bot = FamilyDayBot()
+time.sleep(2)
